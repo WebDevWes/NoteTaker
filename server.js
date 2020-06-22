@@ -31,3 +31,9 @@ app.get("/notes", function (req, res) {
 app.get("/api/notes", function (req, res) {
     res.sendFile(path.join(__dirname + "/db/", "db.json"));
 });
+
+// Starts the server to begin listening
+// =============================================================
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+});
