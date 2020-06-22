@@ -33,30 +33,24 @@ app.get("/api/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/tables", function (req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-    var newReservation = req.body;
-
-    // Using a RegEx Pattern to remove spaces from newCustomer
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newReservation.routeName = newReservation.customerName.replace(/\s+/g, "").toLowerCase();
-
-    console.log(newReservation);
-    if (customers.length < 5) {
-        customers.push(newReservation)
-        newReservation.type = "Reservation"
-    }
-    else {
-        waitlist.push(newReservation);
-        newReservation.type = "Waitlist"
-    }
-    res.json(newReservation);
-
+// Adds new post to db.json in the form of an object with key of "title" and "text"
+// Needs to grab the db.json first, push to the array of objects, then send the edited db.json back
+app.post("/api/notes", function (req, res) {
+    fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
+        if (err) throw err;
+        console.log(data); //Requested data that new object will be pushed to
+    })
+    console.log(req.body); //The new data to be pushed to db.json
+    const newEntry = {
+        title: req.body.title,
+        text: req.body.text
+    };
+    req.push(newEntry);
+    fs.writeFile(path.join(__dirname, "/db/db.json"), req, (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+    });
 });
-
-
 
 // Starts the server to begin listening
 // =============================================================
