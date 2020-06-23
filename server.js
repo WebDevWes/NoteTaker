@@ -38,18 +38,42 @@ app.get("/api/notes", function (req, res) {
 app.post("/api/notes", function (req, res) {
     fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
         if (err) throw err;
-        console.log(data); //Requested data that new object will be pushed to
+        //console.log(data); //Requested data that new object will be pushed to
+
+        //console.log(req.body); //The new data to be pushed to db.json
+
+        const jsonFile = JSON.parse(data); 
+        const newEntry = {
+            title: req.body.title,
+            text: req.body.text
+        };
+        jsonFile.push(newEntry);
+        fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile), (err) => {
+            if (err) throw err;
+            console.log('The file has been saved!');
+        });
     })
-    console.log(req.body); //The new data to be pushed to db.json
-    const newEntry = {
-        title: req.body.title,
-        text: req.body.text
-    };
-    req.push(newEntry);
-    fs.writeFile(path.join(__dirname, "/db/db.json"), req, (err) => {
+});
+
+// Delete a post from db.json
+app.delete("/api/notes", function (req, res) {
+    fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
         if (err) throw err;
-        console.log('The file has been saved!');
-    });
+        //console.log(data); //Requested data that new object will be pushed to
+
+        //console.log(req.body); //The new data to be pushed to db.json
+
+        const jsonFile = JSON.parse(data); 
+        const newEntry = {
+            title: req.body.title,
+            text: req.body.text
+        };
+        jsonFile.push(newEntry);
+        fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile), (err) => {
+            if (err) throw err;
+            console.log('The file has been saved!');
+        });
+    })
 });
 
 // Starts the server to begin listening
