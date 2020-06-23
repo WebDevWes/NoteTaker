@@ -19,23 +19,23 @@ app.use(express.static('public'))
 // =============================================================
 
 // Basic route that sends the user to index.html
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 // Basic route that sends the user to notes.html
-app.get("/notes", function (req, res) {
+app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
 // Basic route that sends the db.json file 
-app.get("/api/notes", function (req, res) {
+app.get("/api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
 // Adds new post to db.json in the form of an object with key of "title" and "text"
 // Needs to grab the db.json first, push to the array of objects, then send the edited db.json back
-app.post("/api/notes", function (req, res) {
+app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
         if (err) throw err;
         //console.log(data); //Requested data that new object will be pushed to
@@ -63,7 +63,7 @@ app.post("/api/notes", function (req, res) {
 });
 
 // Delete a post from db.json
-app.delete("/api/notes/:id", function (req, res) {
+app.delete("/api/notes/:id", (req, res) => {
     // req.params.id Grabs ID of note that is clicked
     const deleteNote = req.params.id;
     fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
@@ -90,6 +90,6 @@ app.delete("/api/notes/:id", function (req, res) {
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function () {
+app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
 });
