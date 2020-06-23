@@ -8,5 +8,10 @@
     "id": 2,
     "title": "Adds ID",
     "text": "This note should have an ID # of 2"
+  },
+  {
+    "id": 3,
+    "title": "Refresh!!",
+    "text": "Refresh list when adding new note"
   }
 ]

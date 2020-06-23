@@ -49,6 +49,8 @@ app.post("/api/notes", function (req, res) {
             text: req.body.text
         };
         jsonFile.push(newEntry);
+        // Adds res.json() to refresh list when adding to db.json
+        res.json(newEntry);
         fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile, null, 2), (err) => {
             if (err) throw err;
             console.log('The file has been saved!');
