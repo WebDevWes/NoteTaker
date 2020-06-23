@@ -42,13 +42,14 @@ app.post("/api/notes", function (req, res) {
 
         //console.log(req.body); //The new data to be pushed to db.json
 
-        const jsonFile = JSON.parse(data); 
+        const jsonFile = JSON.parse(data);
         const newEntry = {
+            id: jsonFile.length + 1,
             title: req.body.title,
             text: req.body.text
         };
         jsonFile.push(newEntry);
-        fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile), (err) => {
+        fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile, null, 2), (err) => {
             if (err) throw err;
             console.log('The file has been saved!');
         });
@@ -63,11 +64,13 @@ app.delete("/api/notes", function (req, res) {
 
         //console.log(req.body); //The new data to be pushed to db.json
 
-        const jsonFile = JSON.parse(data); 
+        const jsonFile = JSON.parse(data);
         const newEntry = {
+            id: jsonFile.length + 1,
             title: req.body.title,
             text: req.body.text
         };
+        console.log(jsonFile);
         jsonFile.push(newEntry);
         fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile), (err) => {
             if (err) throw err;

@@ -1,1 +1,12 @@
-[{"title":"Test Title","text":"Test text"},{"title":"title 2","text":"Test text number 2"},{"title":"title 3","text":"Test text number 3"},{"title":"title 4","text":"Test text number 4"},{"title":"DSsadf","text":"asdf"},{"title":"asdfas","text":"asdfasd"}]
+[
+  {
+    "id": 1,
+    "title": "Test Title",
+    "text": "Test text"
+  },
+  {
+    "id": 2,
+    "title": "Adds ID",
+    "text": "This note should have an ID # of 2"
+  }
+]
