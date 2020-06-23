@@ -43,8 +43,12 @@ app.post("/api/notes", function (req, res) {
         //console.log(req.body); //The new data to be pushed to db.json
 
         const jsonFile = JSON.parse(data);
+
+        //Generate new ID w/o using jsonFile.length, ID might repeat upon delete
+        const newID = jsonFile[jsonFile.length-1].id + 1;
+
         const newEntry = {
-            id: jsonFile.length + 1,
+            id: newID,
             title: req.body.title,
             text: req.body.text
         };
@@ -59,24 +63,27 @@ app.post("/api/notes", function (req, res) {
 });
 
 // Delete a post from db.json
-app.delete("/api/notes", function (req, res) {
+app.delete("/api/notes/:id", function (req, res) {
+    // req.params.id Grabs ID of note that is clicked
+    const deleteNote = req.params.id;
     fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", (err, data) => {
         if (err) throw err;
-        //console.log(data); //Requested data that new object will be pushed to
 
-        //console.log(req.body); //The new data to be pushed to db.json
+        // Changed const to let because file needed to be changed
+        let jsonFile = JSON.parse(data);
 
-        const jsonFile = JSON.parse(data);
-        const newEntry = {
-            id: jsonFile.length + 1,
-            title: req.body.title,
-            text: req.body.text
-        };
-        console.log(jsonFile);
-        jsonFile.push(newEntry);
-        fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(jsonFile), (err) => {
+        jsonFile = jsonFile.filter((note) => {
+            // Added parseInt because file read from JSON is string
+            return parseInt(note.id) !== parseInt(deleteNote);
+        });
+
+        // Moved JSON.stringify out of writeFile to here to utilize res.json
+        const newNote = JSON.stringify(jsonFile, null, 2);
+        res.json(newNote);
+    
+        fs.writeFile(path.join(__dirname, "/db/db.json"), newNote, (err) => {
             if (err) throw err;
-            console.log('The file has been saved!');
+            console.log('A Note has been deleted');
         });
     })
 });

@@ -10,8 +10,13 @@
     "text": "This note should have an ID # of 2"
   },
   {
-    "id": 3,
-    "title": "Refresh!!",
-    "text": "Refresh list when adding new note"
+    "id": 7,
+    "title": "The number is 7",
+    "text": "Hi my number is 7"
+  },
+  {
+    "id": 8,
+    "title": "This number should be 8",
+    "text": "better be 8"
   }
 ]
