@@ -1,7 +1,6 @@
+### Deployed on Heroku: https://safe-caverns-86515.herokuapp.com/
 
 ![License Badge](https://img.shields.io/badge/License-ISC-green.svg)
-
-Deployed on Heroku: https://safe-caverns-86515.herokuapp.com/
 
 ### Github Username: Wesaboo
 
@@ -10,8 +9,6 @@ Github Email Address: wesaboo@gmail.com
 ## Project/Repo Title: Note Taker
 
 Description: App that user can save/delete note, stored as a database on a server in JSON format.
-
-Table of Contents: 
 
 Installation Instructions: Webpage format, no installation neccessary
 
@@ -23,6 +20,10 @@ License: ISC
 
 Contributor: Wesley Tran
 
-Test Code: 
-
-![Avatar](https://avatars0.githubusercontent.com/u/60164964?v=4)
+### Technologies Used
+- HTML
+- CSS
+- Javascript
+- NodeJS
+  - Express
+  - UUID
