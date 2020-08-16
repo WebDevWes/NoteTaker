@@ -45,8 +45,12 @@ app.post("/api/notes", (req, res) => {
         const jsonFile = JSON.parse(data);
 
         //Generate new ID w/o using jsonFile.length, ID might repeat upon delete
-        const newID = jsonFile[jsonFile.length-1].id + 1;
-
+        let newID;
+        if (jsonFile.length) {
+            newID = jsonFile[jsonFile.length-1].id + 1;
+        } else {
+            newID = 0
+        }
         const newEntry = {
             id: newID,
             title: req.body.title,
