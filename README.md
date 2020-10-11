@@ -2,9 +2,9 @@
 
 ![License Badge](https://img.shields.io/badge/License-ISC-green.svg)
 
-### Github Username: Wesaboo
+### Github Username: WebDevWes
 
-Github Email Address: wesaboo@gmail.com
+Github Email Address: webdevwes89@gmail.com
 
 ## Project/Repo Title: Note Taker
 
